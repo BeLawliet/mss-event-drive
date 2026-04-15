@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+
+# Herramientas / cobertura
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# Django local / secretos
+*.sqlite3
+db.sqlite3
+.env
+.env.*
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Docs (no necesarios en la imagen)
+*.md
+
+# Definición de imagen (el cliente sigue leyendo el Dockerfile al hacer build)
+Dockerfile
+.dockerignore
