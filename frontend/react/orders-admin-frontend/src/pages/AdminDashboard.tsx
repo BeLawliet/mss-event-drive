@@ -31,7 +31,6 @@ type FormData = yup.InferType<typeof schema>;
 export default function AdminDashboard() {
   const {
     createOrder,
-    notifications,
     refreshOrders,
     highlightedOrders,
     clearHighlight,

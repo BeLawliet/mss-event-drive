@@ -77,7 +77,7 @@ export const ApiProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   // 🧩 Cargar estados al iniciar
-  const [readOrders, setReadOrders] = useState<Set<string>>(new Set());
+  const [, setReadOrders] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const { highlighted, read } = loadOrderStates();
