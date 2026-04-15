@@ -1,0 +1,17 @@
+.git
+.gitignore
+.idea
+*.iml
+.vscode
+
+build
+bin
+out
+.gradle
+
+*.md
+Dockerfile*
+.dockerignore
+
+logs
+*.log
