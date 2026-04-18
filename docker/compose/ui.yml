@@ -1,0 +1,22 @@
+services:
+  angular-service:
+    build:
+      context: ../../frontend/angular/payments-ui
+      dockerfile: Dockerfile
+    container_name: container-ui-angular
+    ports:
+      - "4200:80"
+    restart: unless-stopped
+    networks:
+      - mss-network
+
+  react-service:
+    build:
+      context: ../../frontend/react/orders-admin-frontend
+      dockerfile: Dockerfile
+    container_name: container-ui-react
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+    networks:
+      - mss-network

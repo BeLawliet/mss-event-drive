@@ -1,0 +1,9 @@
+include:
+  - ./docker/compose/kafka.yml
+  - ./docker/compose/db.yml
+  - ./docker/compose/services.yml
+  - ./docker/compose/ui.yml
+
+networks:
+  mss-network:
+    driver: bridge

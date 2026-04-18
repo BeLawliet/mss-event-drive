@@ -1,0 +1,32 @@
+services:
+  postgres-service:
+    image: postgres:16-alpine3.23
+    container_name: container-db-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "456"
+      POSTGRES_DB: orders_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mss-network
+
+  mongo-service:
+    image: mongo:7
+    container_name: container-db-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: "456"
+      MONGO_INITDB_DATABASE: payments_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mss-network
+
+volumes:
+  postgres_data:
+  mongo_data:

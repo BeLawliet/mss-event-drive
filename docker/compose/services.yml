@@ -1,0 +1,22 @@
+services:
+  django-service:
+    build:
+      context: ../../backend/django/orders
+      dockerfile: Dockerfile
+    container_name: container-microservice-django
+    ports:
+      - "8000:8000"
+    environment:
+      DB_NAME: orders_db
+      DB_USER: postgres
+      DB_PASSWORD: "456"
+      DB_HOST: postgres-service
+      DB_PORT: "5432"
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      DJANGO_DEBUG: "true"
+    depends_on:
+      - postgres-service
+      - kafka
+    restart: unless-stopped
+    networks:
+      - mss-network
