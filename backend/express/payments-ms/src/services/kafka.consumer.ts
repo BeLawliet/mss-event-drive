@@ -4,7 +4,7 @@ import { Payment } from "../models/payment.model";
 
 const kafka = new Kafka({
   clientId: "payments-service",
-  brokers: ["localhost:9092"],
+  brokers: [process.env.KAFKA_BOOTSTRAP_SERVERS ?? "localhost:9092"],
 });
 
 const consumer = kafka.consumer({ groupId: "payments-group" });

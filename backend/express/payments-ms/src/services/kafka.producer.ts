@@ -6,7 +6,7 @@ let producer: Producer | null = null;
 
 const kafka = new Kafka({
   clientId: "payments-ms",
-  brokers: ["localhost:9092"], // change if your broker is different
+  brokers: [process.env.KAFKA_BOOTSTRAP_SERVERS ?? "localhost:9092"],
 });
 
 export type PaymentStatus = "APPROVED" | "REJECTED" | "PENDING";

@@ -20,3 +20,36 @@ services:
     restart: unless-stopped
     networks:
       - mss-network
+  
+  express-service:
+    build:
+      context: ../../backend/express/payments-ms
+      dockerfile: Dockerfile
+    container_name: container-microservice-express
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      MONGO_URI: mongodb://root:456@mongo-service:27017/payments_db?authSource=admin
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    depends_on:
+      - mongo-service
+      - kafka
+    restart: unless-stopped
+    networks:
+      - mss-network
+
+  spring-service:
+    build:
+      context: ../../backend/webflux/notifications-ms
+      dockerfile: Dockerfile
+    container_name: container-microservice-spring
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    depends_on:
+      - kafka
+    restart: unless-stopped
+    networks:
+      - mss-network

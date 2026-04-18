@@ -3,7 +3,7 @@ import { Kafka } from "kafkajs";
 
 const kafka = new Kafka({
   clientId: "payments-dlq-listener",
-  brokers: ["localhost:9092"],
+  brokers: [process.env.KAFKA_BOOTSTRAP_SERVERS ?? "localhost:9092"],
 });
 
 const consumer = kafka.consumer({ groupId: "payments-dlq-group" });
