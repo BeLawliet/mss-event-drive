@@ -3,6 +3,7 @@ from kafka import KafkaConsumer
 import json
 import threading
 import logging
+import os
 from django.db import transaction
 from orders_app.models import Order
 
@@ -17,15 +18,17 @@ def start_payment_completed_consumer():
     def consume():
         print("🧵  Hilo del consumer Kafka iniciado")
         try:
+            bootstrap_servers = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
             print("📡  Intentando conectar con Kafka...")
             consumer = KafkaConsumer(
                 "payment_completed",
-                bootstrap_servers=["localhost:9092"],
+                bootstrap_servers=bootstrap_servers,
                 group_id="orders-ms-group",
                 value_deserializer=lambda v: json.loads(v.decode("utf-8")),
                 enable_auto_commit=True,
                 auto_offset_reset="earliest",
             )
+            logger.info(f"Kafka consumer configured with bootstrap servers: {bootstrap_servers}")
             print("✅  Orders.MS Kafka consumer listening to 'payment_completed'...")
 
             for message in consumer:

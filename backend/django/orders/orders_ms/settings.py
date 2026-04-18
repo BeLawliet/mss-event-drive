@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-!1st@^s&4-8&0o#zy))#wno=bn9!re(v^-w253)z78!b4m^%yt
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "postgres-database"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "django-service"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

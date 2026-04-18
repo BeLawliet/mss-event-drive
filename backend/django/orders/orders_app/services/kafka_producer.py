@@ -2,6 +2,7 @@
 from kafka import KafkaProducer
 import json
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -12,10 +13,12 @@ def get_kafka_producer():
     Se usa JSON como formato de mensaje.
     """
     try:
+        bootstrap_servers = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
         producer = KafkaProducer(
-            bootstrap_servers=["localhost:9092"],
+            bootstrap_servers=bootstrap_servers,
             value_serializer=lambda v: json.dumps(v).encode("utf-8")
         )
+        logger.info(f"Kafka producer configured with bootstrap servers: {bootstrap_servers}")
         return producer
     except Exception as e:
         logger.error(f"Error creating Kafka producer: {e}")
